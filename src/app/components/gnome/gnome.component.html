@@ -1,0 +1,14 @@
+<!-- filter -->
+
+<!-- tab -->
+<div *ngIf="gnomes.length>0" >
+   
+    <div *ngFor="let g of gnomes">
+        <span>{{g.name}}</span>
+    </div>
+    
+</div>
+
+<div *ngIf="gnomes.length == 0">
+    Loading...
+</div>
