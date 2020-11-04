@@ -4,7 +4,7 @@ export class GnomeModel {
     hair_color: string;
     height: number;
     id: number;
-    name: number;
+    name: string;
     professions: Array<string>;
     thumbnail: string;
     weight: number;

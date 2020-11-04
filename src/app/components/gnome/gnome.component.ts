@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 import { VillageService } from '../../services/village.service';
 import { GnomeModel } from './gnome.component.model';
 
@@ -11,9 +13,17 @@ import { GnomeModel } from './gnome.component.model';
 export class GnomeComponent implements OnInit {
 
   gnomes : Array<GnomeModel> = [];
+  maxAge: number = 0;
+  maxFriends: number = 0;
+  maxProfessions: number = 0;
+  closeResult: string;
+  
+  limit : number = 20;
 
-  constructor(private villageService: VillageService) { 
-
+  modalData : any = {};
+  
+  constructor(private villageService: VillageService, private modalService: NgbModal) { 
+    
   }
 
   ngOnInit(): void {
@@ -33,6 +43,11 @@ export class GnomeComponent implements OnInit {
             weight: d.weight
           });          
         }
+
+        this.maxAge = Math.max(...this.gnomes.filter(x => !isNaN(parseInt(""+x.age))).map(x => x.age));
+        this.maxFriends = Math.max(...this.gnomes.map(x => x.friends.length));
+        this.maxProfessions = Math.max(...this.gnomes.map(x => x.professions.length));
+
       } else {
         console.warn("Wrong data format...",data);
       }
@@ -40,5 +55,28 @@ export class GnomeComponent implements OnInit {
       console.error("Impossible to retrieve info from service...", err);
     });
   }
+
+  setModalData(ii:number){
+    this.modalData = this.gnomes[ii];
+  }
+
+  isScrolling : any;
+
+  @HostListener('window:scroll', ['$event']) // for window scroll events
+  onScroll(event : any) {
+    
+    if(this.isScrolling){
+      clearTimeout(this.isScrolling);
+    }
+
+    this.isScrolling = setTimeout(() => {
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+          this.limit+=20;
+        }
+    }, 100);
+  };
+
+
+  
 
 }

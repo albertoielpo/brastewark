@@ -1,22 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GnomeComponent } from './components/gnome/gnome.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import { PercPipe } from './pipe/perc.pipe';
+import { SexPipe } from './pipe/sex.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GnomeComponent
+    GnomeComponent,
+    PercPipe,
+    SexPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ScrollingModule
+    NgbModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
