@@ -1,6 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 import { VillageService } from '../../services/village.service';
 import { GnomeModel } from './gnome.component.model';
 
@@ -12,6 +11,7 @@ import { GnomeModel } from './gnome.component.model';
 })
 export class GnomeComponent implements OnInit {
 
+  isLoading : boolean = true;
   bkGnomes : Array<GnomeModel> = [];
   gnomes : Array<GnomeModel> = [];
   maxAge: number = 0;
@@ -31,7 +31,6 @@ export class GnomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.villageService.getData().subscribe((data: any) => {
-      console.log("data", data)
       if(data && data.Brastlewark){
         for(let d of data.Brastlewark){
           this.gnomes.push({
@@ -54,8 +53,10 @@ export class GnomeComponent implements OnInit {
       } else {
         console.warn("Wrong data format...",data);
       }
+      this.isLoading = false;
     }, (err: any) => {
       console.error("Impossible to retrieve info from service...", err);
+      this.isLoading = false;
     });
   }
 

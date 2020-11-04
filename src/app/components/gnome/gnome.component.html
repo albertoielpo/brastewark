@@ -8,35 +8,9 @@
                 <img src="{{g.thumbnail}}" class="avatar-icon" [ngStyle]="{'border-color': g.hair_color}"
                     title="{{g.name}}" />
             </div>
-            <!-- TODO: create a sub component for age/friends/professions -->
-            <!-- age -->
-            <div class="progress progress-bar-vertical float-left ml-1" title="Age">
-                <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar"
-                    aria-valuenow="{{g.age}}" aria-valuemin="0" aria-valuemax="{{maxAge}}"
-                    [ngStyle]="{'height.%' : g.age | perc:maxAge}">{{g.age}}
-                </div>
-            </div>
-            <!-- friends -->
-            <div class="progress progress-bar-vertical float-left ml-1" title="Friends">
-                <div *ngIf="g.friends.length > 0"
-                    class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"
-                    aria-valuenow="{{g.friends.length}}" aria-valuemin="0" aria-valuemax="{{maxFriends}}"
-                    [ngStyle]="{'height.%' : g.friends.length | perc:maxFriends}">{{g.friends.length}}
-                </div>
-                <div *ngIf="g.friends.length == 0" class="progress-bar progress-bar-striped progress-bar-animated"
-                    role="progressbar" aria-valuenow="{{g.friends.length}}" aria-valuemin="0"
-                    aria-valuemax="{{maxFriends}}" style="height: 100%; background-color: transparent;">0</div>
-            </div>
-            <!-- professions -->
-            <div class="progress progress-bar-vertical float-left ml-1" title="Professions">
-                <div *ngIf="g.professions.length > 0" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                    aria-valuenow="{{g.professions.length}}" aria-valuemin="0" aria-valuemax="{{maxProfessions}}"
-                    [ngStyle]="{'height.%' : g.professions.length | perc:maxProfessions}">{{g.professions.length}}
-                </div>
-                <div *ngIf="g.professions.length == 0" class="progress-bar progress-bar-striped progress-bar-animated"
-                role="progressbar" aria-valuenow="{{g.professions.length}}" aria-valuemin="0"
-                aria-valuemax="{{maxProfessions}}" style="height: 100%; background-color: transparent;">0</div>
-            </div>
+            <app-gnome-bar [curVal]="g.age" [maxVal]="maxAge" [titleLabel]="'Age'" [curColor]="'red'"></app-gnome-bar>
+            <app-gnome-bar [curVal]="g.friends.length" [maxVal]="maxFriends" [titleLabel]="'Friends'" [curColor]="'blue'"></app-gnome-bar>
+            <app-gnome-bar [curVal]="g.professions.length" [maxVal]="maxProfessions" [titleLabel]="'Professions'" [curColor]="'green'"></app-gnome-bar>
         </div>
         <div class="row col-12">
             <label>{{g.name}}</label>
@@ -44,53 +18,12 @@
         </div>
     </div>
 </div>
-
-<!-- TODO: create a subcomponent -->
-<!-- detail modal -->
-<div *ngIf="modalData" class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModal"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">{{modalData.name}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-3">Age</div>
-                    <div class="col-9 wb">{{modalData.age}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-3">Sex</div>
-                    <div class="col-9 wb">{{modalData | sex}}</div>
-                </div>                
-                <div class="row">
-                    <div class="col-3">Friends</div>
-                    <div class="col-9 wb">{{modalData.friends?.length == 0 ? 'No friends' : modalData.friends}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-3">Professions</div>
-                    <div class="col-9 wb">{{modalData.professions?.length == 0 ? 'No professions' : modalData.professions}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-3">Hair color</div>
-                    <div class="col-9 wb">{{modalData.hair_color}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-3">Height</div>
-                    <div class="col-9 wb">{{modalData.height}}</div>
-                </div>
-                <div class="row">
-                    <div class="col-3">Weight</div>
-                    <div class="col-9 wb">{{modalData.weight}}</div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
+<div *ngIf="gnomes.length == 0 && !isLoading" class="row p-2">
+    <div class="col-12">No results...</div>
 </div>
+<div *ngIf="gnomes.length == 0 && isLoading" class="row p-2">
+    <div class="col-12">Loading...</div>
+</div>
+
+<!-- gnome detail -->
+<app-gnome-detail [modalData]="modalData"></app-gnome-detail>

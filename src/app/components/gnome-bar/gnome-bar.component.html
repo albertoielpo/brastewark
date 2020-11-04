@@ -1,0 +1,6 @@
+<div class="progress progress-bar-vertical float-left ml-1" title="{{titleLabel}}">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+        [attr.aria-valuenow]="curVal" [attr.aria-valuemin]="0" [attr.aria-valuemax]="maxVal"
+        [ngStyle]="{'background': curColor, 'height.%' : curVal | perc:maxVal}">{{curVal}}
+    </div>
+</div>

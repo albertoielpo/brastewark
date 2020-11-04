@@ -1,0 +1,47 @@
+<div *ngIf="modalData" class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModal"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{modalData.name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-3">Age</div>
+                    <div class="col-9 wb">{{modalData.age}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-3">Sex</div>
+                    <div class="col-9 wb">{{modalData | sex}}</div>
+                </div>                
+                <div class="row">
+                    <div class="col-3">Friends</div>
+                    <div class="col-9 wb">{{modalData.friends?.length == 0 ? 'No friends' : modalData.friends}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-3">Professions</div>
+                    <div class="col-9 wb">{{modalData.professions?.length == 0 ? 'No professions' : modalData.professions}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">Hair color</div>
+                    <div class="col-9 wb">{{modalData.hair_color}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-3">Height</div>
+                    <div class="col-9 wb">{{modalData.height}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-3">Weight</div>
+                    <div class="col-9 wb">{{modalData.weight}}</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

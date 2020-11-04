@@ -7,13 +7,17 @@ import { AppComponent } from './app.component';
 import { GnomeComponent } from './components/gnome/gnome.component';
 import { PercPipe } from './pipe/perc.pipe';
 import { SexPipe } from './pipe/sex.pipe';
+import { GnomeDetailComponent } from './components/gnome-detail/gnome-detail.component';
+import { GnomeBarComponent } from './components/gnome-bar/gnome-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GnomeComponent,
     PercPipe,
-    SexPipe
+    SexPipe,
+    GnomeDetailComponent,
+    GnomeBarComponent
   ],
   imports: [
     BrowserModule,
