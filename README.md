@@ -18,7 +18,9 @@ Images are caching using httpd server
 ![alt text](https://test.ielpo.net/img/mobile.png)
 
 ## Info
-The gender is calculated using "gender-detection" library and if the result is "unknown" then I assume arbitrarly then pink and green hair gnomes are female.
+The gender is calculated using "gender-detection" library and if the given result is "unknown" then I assume arbitrarily then pink and green hair gnomes are female.
+
+I asserted than the json source is always available online... It is easily possible to develop a fallback using the last stored version.
 
 ## Development server
 
