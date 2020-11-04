@@ -2,20 +2,20 @@
 <input (keyup)="filterByName(tFilterByName)" class="form-control" id="textFilter" #tFilterByName type="text" placeholder="Filter by name..">
 <!-- tab -->
 <div *ngIf="gnomes.length>0" class="row col-12 p-2">
-    <div class="col-xl-3 col-lg-4 col-md-6" *ngFor="let g of gnomes | slice:0:limit; let ii = index">
-        <div class="row col-12">
+    <div class="col-xl-3 col-lg-4 col-md-6 mb-3 center" *ngFor="let g of gnomes | slice:0:limit; let ii = index">
+        <div class="row d-flex justify-content-center">            
             <div (click)="setModalData(ii)" data-toggle="modal" data-target="#detailModal" class="float-left pointer">
                 <img src="{{g.thumbnail}}" class="avatar-icon" [ngStyle]="{'border-color': g.hair_color}"
                     title="{{g.name}}" />
             </div>
             <app-gnome-bar [curVal]="g.age" [maxVal]="maxAge" [titleLabel]="'Age'" [curColor]="'red'"></app-gnome-bar>
             <app-gnome-bar [curVal]="g.friends.length" [maxVal]="maxFriends" [titleLabel]="'Friends'" [curColor]="'blue'"></app-gnome-bar>
-            <app-gnome-bar [curVal]="g.professions.length" [maxVal]="maxProfessions" [titleLabel]="'Professions'" [curColor]="'green'"></app-gnome-bar>
+            <app-gnome-bar [curVal]="g.professions.length" [maxVal]="maxProfessions" [titleLabel]="'Professions'" [curColor]="'green'"></app-gnome-bar>        
         </div>
-        <div class="row col-12">
+        <div class="row justify-content-center">
             <label>{{g.name}}</label>
             <label class="ml-2 font-italic">{{g | sex}}</label>
-        </div>
+        </div> 
     </div>
 </div>
 <div *ngIf="gnomes.length == 0 && !isLoading" class="row p-2">

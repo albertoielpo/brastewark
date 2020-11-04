@@ -17,3 +17,17 @@
   -o-transition: height 0.6s ease;
   transition: height 0.6s ease;
 }
+
+.title-small {
+  font-size: 9px;
+}
+
+.label-rotate {
+  transform: rotate(-20deg);
+}
+
+.empty-data {
+  background-color: transparent !important; 
+  color:grey !important;
+  height: 18% !important;
+}

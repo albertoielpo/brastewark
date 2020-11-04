@@ -1,6 +1,10 @@
 <div class="progress progress-bar-vertical float-left ml-1" title="{{titleLabel}}">
-    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+    <div *ngIf="curVal > 0" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
         [attr.aria-valuenow]="curVal" [attr.aria-valuemin]="0" [attr.aria-valuemax]="maxVal"
-        [ngStyle]="{'background': curColor, 'height.%' : curVal | perc:maxVal}">{{curVal}}
+        [ngStyle]="{'background': curColor, 'height.%' : curVal | perc:maxVal}" style="min-height: 18%;">{{curVal}}
+    </div>
+    <div *ngIf="curVal == 0" class="progress-bar progress-bar-striped progress-bar-animated empty-data" role="progressbar"
+        [attr.aria-valuenow]="curVal" [attr.aria-valuemin]="0" [attr.aria-valuemax]="maxVal">0
     </div>
 </div>
+<div class="title-small"><label class="label-rotate">{{titleLabel}}</label></div>

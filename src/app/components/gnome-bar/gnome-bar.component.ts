@@ -8,10 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GnomeBarComponent implements OnInit {
 
   @Input("curVal")
-  curVal : string;
+  curVal : number;
 
   @Input("maxVal")
-  maxVal : string;
+  maxVal : number;
 
   @Input("titleLabel")
   titleLabel : string;

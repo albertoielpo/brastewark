@@ -41,7 +41,7 @@ export class GnomeComponent implements OnInit {
             id: d.id,
             name: d.name,
             professions: d.professions,
-            thumbnail: d.thumbnail,
+            thumbnail: d.thumbnail == null ? null : d.thumbnail.replace("http://","https://"),  //force https
             weight: d.weight
           });          
         }
