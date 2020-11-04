@@ -1,7 +1,7 @@
 <!-- filter -->
-
+<input (keyup)="filterByName(tFilterByName)" class="form-control" id="textFilter" #tFilterByName type="text" placeholder="Filter by name..">
 <!-- tab -->
-<div *ngIf="gnomes.length>0" class="row p-2">
+<div *ngIf="gnomes.length>0" class="row col-12 p-2">
     <div class="col-xl-3 col-lg-4 col-md-6" *ngFor="let g of gnomes | slice:0:limit; let ii = index">
         <div class="row col-12">
             <div (click)="setModalData(ii)" data-toggle="modal" data-target="#detailModal" class="float-left pointer">
@@ -60,28 +60,32 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-3">Age</div>
-                    <div class="col-9">{{modalData.age}}</div>
+                    <div class="col-9 wb">{{modalData.age}}</div>
                 </div>
                 <div class="row">
+                    <div class="col-3">Sex</div>
+                    <div class="col-9 wb">{{modalData | sex}}</div>
+                </div>                
+                <div class="row">
                     <div class="col-3">Friends</div>
-                    <div class="col-9">{{modalData.friends?.length == 0 ? 'No friends' : modalData.friends}}</div>
+                    <div class="col-9 wb">{{modalData.friends?.length == 0 ? 'No friends' : modalData.friends}}</div>
                 </div>
                 <div class="row">
                     <div class="col-3">Professions</div>
-                    <div class="col-9">{{modalData.professions?.length == 0 ? 'No professions' : modalData.professions}}
+                    <div class="col-9 wb">{{modalData.professions?.length == 0 ? 'No professions' : modalData.professions}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-3">Hair color</div>
-                    <div class="col-9">{{modalData.hair_color}}</div>
+                    <div class="col-9 wb">{{modalData.hair_color}}</div>
                 </div>
                 <div class="row">
                     <div class="col-3">Height</div>
-                    <div class="col-9">{{modalData.height}}</div>
+                    <div class="col-9 wb">{{modalData.height}}</div>
                 </div>
                 <div class="row">
                     <div class="col-3">Weight</div>
-                    <div class="col-9">{{modalData.weight}}</div>
+                    <div class="col-9 wb">{{modalData.weight}}</div>
                 </div>
             </div>
             <div class="modal-footer">

@@ -12,15 +12,18 @@ import { GnomeModel } from './gnome.component.model';
 })
 export class GnomeComponent implements OnInit {
 
+  bkGnomes : Array<GnomeModel> = [];
   gnomes : Array<GnomeModel> = [];
   maxAge: number = 0;
   maxFriends: number = 0;
   maxProfessions: number = 0;
-  closeResult: string;
-  
+  closeResult: string;  
   limit : number = 20;
-
   modalData : any = {};
+  isScrollingFlow : any;
+  
+  isFilter:boolean = false;
+  isFilterFlow:any;
   
   constructor(private villageService: VillageService, private modalService: NgbModal) { 
     
@@ -60,23 +63,42 @@ export class GnomeComponent implements OnInit {
     this.modalData = this.gnomes[ii];
   }
 
-  isScrolling : any;
-
-  @HostListener('window:scroll', ['$event']) // for window scroll events
+  @HostListener('window:scroll', ['$event'])
   onScroll(event : any) {
     
-    if(this.isScrolling){
-      clearTimeout(this.isScrolling);
+    if(this.isScrollingFlow){
+      clearTimeout(this.isScrollingFlow);
     }
 
-    this.isScrolling = setTimeout(() => {
-        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    /* do not allow multiple calls... limit check every 100 ms */
+    this.isScrollingFlow = setTimeout(() => {
+        if ((Math.round(window.innerHeight + window.scrollY)) >= document.body.offsetHeight) {
           this.limit+=20;
         }
     }, 100);
   };
 
 
+  filterByName(f:any){
+    this.bkGnomes.length == 0 ? this.bkGnomes = JSON.parse(JSON.stringify(this.gnomes)) : false;
+    if(!f || !f.value || !f.value == null){
+      this.isFilter = false;
+      this.gnomes = JSON.parse(JSON.stringify(this.bkGnomes));
+      return;
+    }
+    this.isFilter = true;
+
+    if(this.isFilterFlow){
+      clearTimeout(this.isFilterFlow);
+    }
+
+    /* do not allow multiple calls... limit to one every 500ms */
+    this.isFilterFlow = setTimeout(() => {
+      this.gnomes = this.bkGnomes.filter(x => x.name.toLowerCase().includes(f.value.toLowerCase()));
+    }, 500);
+
+    
+  }
   
 
 }

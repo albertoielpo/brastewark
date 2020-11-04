@@ -1,7 +1,11 @@
 {
   "name": "brastewark",
   "version": "1.0.0",
-  "author": {"name": "Alberto Ielpo", "url": "https://ielpo.net", "email": "alberto@ielpo.net"},
+  "author": {
+    "name": "Alberto Ielpo",
+    "url": "https://ielpo.net",
+    "email": "alberto@ielpo.net"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

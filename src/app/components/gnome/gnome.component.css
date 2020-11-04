@@ -35,3 +35,7 @@
 .pointer {
   cursor: pointer;
 }
+
+.wb {
+  word-break: break-word;
+}
