@@ -7,6 +7,12 @@ The gender is calculated using "gender-detection" library and if the given resul
 
 I asserted than the json source is always available online... It is easily possible to develop a fallback using the last stored version.
 
-## Development server
+## Try it
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+node --version
+# v14.21.3
+npm i
+npm run start
+# Navigate to http://localhost:4200/
+```
